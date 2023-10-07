@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:ftr/model/product.dart';
 
-class TestCard extends StatefulWidget {
-  const TestCard({
+class ItemCard extends StatefulWidget {
+  const ItemCard({
     super.key,
-    required this.firstPhoto,
-    required this.secondPhoto
+    required this.product,
+    required this.press
   });
 
-  final String firstPhoto;
-  final String secondPhoto;
+  final Product product;
+  final VoidCallback press;
 
   @override
-  State<TestCard> createState() => _TestCardState();
+  State<ItemCard> createState() => _ItemCardState();
 }
 
-class _TestCardState extends State<TestCard> {
+class _ItemCardState extends State<ItemCard> {
+
   bool isHover = false;
   Offset mousePos = const Offset(0, 0);
 
@@ -38,11 +40,9 @@ class _TestCardState extends State<TestCard> {
           mousePos = const Offset(0, 0);
         });
       },
-      child: InkWell(
-          child: backImage(widget.firstPhoto, widget.secondPhoto),
-          onTap: () {
-            debugPrint('Card tapped.');
-          }
+      child: GestureDetector(
+          child: backImage(widget.product.firstImage, widget.product.secondImage),
+          onTap: widget.press,
       ),
     );
   }
