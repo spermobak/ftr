@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:ftr/model/product.dart';
 
-import '../../widgets/widgets.dart';
+import '../widgets/widgets.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomeState extends State<Home> {
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Center(child: Text('F.T.R'))),
+      backgroundColor: theme.colorScheme.background,
+      appBar: AppBar(
+          title: Center(
+              child: Text(
+        'F.T.R',
+        style: theme.textTheme.headlineMedium,
+      ))),
       body: GridView.builder(
         itemCount: 3,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -26,11 +32,9 @@ class _HomeState extends State<Home> {
           childAspectRatio: 1,
         ),
         itemBuilder: (context, index) => ItemCard(
-          press: () {
-            debugPrint('Card tapped.');
-          },
-          product: products[index],
-        ),
+            product: products[index],
+            press: () => Navigator.of(context)
+                .pushNamed('/details', arguments: products[index])),
       ),
     );
   }

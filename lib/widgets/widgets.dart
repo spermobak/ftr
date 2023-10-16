@@ -1,1 +1,2 @@
-export 'itemCard.dart';
+export 'home/item_card.dart';
+export 'description/description.dart';

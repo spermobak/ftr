@@ -41,14 +41,14 @@ class _ItemCardState extends State<ItemCard> {
         });
       },
       child: GestureDetector(
-          child: backImage(widget.product.firstImage, widget.product.secondImage),
+          child: backImage(widget.product.images),
           onTap: widget.press,
       ),
     );
   }
 
 
-  backImage(firsPhoto, secondPhoto) {
+  backImage(images) {
     return AnimatedContainer(
       curve: Curves.easeOutCubic,
       duration: const Duration(milliseconds: 1000),
@@ -59,11 +59,11 @@ class _ItemCardState extends State<ItemCard> {
             ? BoxDecoration(
             image: DecorationImage(
                 fit: BoxFit.fitHeight,
-                image: AssetImage(secondPhoto)))
+                image: AssetImage(images[1])))
             : BoxDecoration(
             image: DecorationImage(
                 fit: BoxFit.fitHeight,
-                image: AssetImage(firsPhoto))),
+                image: AssetImage(images[0]))),
       ),
     );
   }
